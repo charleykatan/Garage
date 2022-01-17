@@ -80,9 +80,7 @@ public class Garage {
 		vehicleList.removeAll(toRemove);
 		toRemove.clear();
 		System.out.println("All vehicles of the type " + type + " have been removed.");
-		System.out.println("Number of vehicles in garage: " + vehicleList.size());
-		System.out.println("Updated vehicle list:");
-		System.out.println(vehicleList);
+		printVehicleList();
 	}
 	
 	public void emptyGarage() {
