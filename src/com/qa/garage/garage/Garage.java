@@ -3,6 +3,9 @@ package com.qa.garage.garage;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qa.garage.vehicle.Car;
+import com.qa.garage.vehicle.Lorry;
+import com.qa.garage.vehicle.Motorbike;
 import com.qa.garage.vehicle.Vehicle;
 
 public class Garage {
@@ -25,19 +28,33 @@ public class Garage {
 		}
 	}
 	
-	public void calcBillByType() {
-		for (Vehicle v : vehicleList) {
-			if (v.getType() == "Car") {
-				bill = (400 + v.getID() * 25.50);
-				System.out.println("Bill for " + v.getColour() + " " + v.getManufacturer() +": £" + bill); // Could be improved to calculate by noOfDoors etc subclass methods
-			} else if (v.getType() == "Motorbike") {
-				bill = (200 + v.getID() * 12.50);
-				System.out.println("Bill for " + v.getColour() + " " + v.getManufacturer() +": £" + bill);
-			} else if (v.getType() == "Lorry") {
-				bill = (1000 + v.getID() * 50.50);
-				System.out.println("Bill for " + v.getColour() + " " + v.getManufacturer() +": £" + bill);
-			}
-		}
+	public float calcBillByType() {
+		float bill = 0.0f;
+		for (Vehicle v : this.vehicleList)
+		if (v instanceof Car) {
+			Car c = (Car) v;
+			bill += c.getNoOfDoors() * 50 + c.getID() * 20;
+ 		} else if (v instanceof Motorbike) {
+ 			Motorbike m = (Motorbike) v;
+ 			bill += m.getNoOfHelmets() * 100 + m.getID() * 30;
+ 		} else if (v instanceof Lorry) {
+ 			Lorry l = (Lorry) v;
+ 			bill += l.getMaxLoad() * 100 + l.getID() * 15;
+ 		} 
+		return bill;
+		
+//		 {
+//			if (v.getType() == "Car") {
+//				bill = (400 + v.getID() * 25.50);
+//				System.out.println("Bill for " + v.getColour() + " " + v.getManufacturer() +": £" + bill); // Could be improved to calculate by noOfDoors etc subclass methods
+//			} else if (v.getType() == "Motorbike") {
+//				bill = (200 + v.getID() * 12.50);
+//				System.out.println("Bill for " + v.getColour() + " " + v.getManufacturer() +": £" + bill);
+//			} else if (v.getType() == "Lorry") {
+//				bill = (1000 + v.getID() * 50.50);
+//				System.out.println("Bill for " + v.getColour() + " " + v.getManufacturer() +": £" + bill);
+//			}
+//		}
 		
 	}
 	
